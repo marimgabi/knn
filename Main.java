@@ -13,6 +13,7 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
 
+        Scanner ler = new Scanner(System.in);
         ArrayList<Banana> todas1 = new ArrayList<>();
         ArrayList<Banana> todas2 = new ArrayList<>();
 
@@ -57,7 +58,38 @@ public class Main {
             teste.add(todas2.get(i));
         }
 
-        System.out.println(treino.size()+"\n"+validacao.size()+"\n"+teste.size());
+        ArrayList<Banana> validacaoCopia = new ArrayList<>();
+        ArrayList<Banana> testeCopia = new ArrayList<>();
+
+        validacaoCopia = validacao;
+        testeCopia = teste;
+
+        //CONJUNTO VALIDAÇÃO
+
+        int k=1;
+        double distancia, acuraciaK[];
+        Banana[] vizinhos;
+        acuraciaK = new double[12];
+
+        //ArrayList<Banana> vizinhos = new ArrayList<>();
+
+        for(k=1;k<12;k+=2){
+            vizinhos = new Banana[k];
+            for (Banana a: validacao){
+                for (Banana b: treino){
+                    distancia= Math.sqrt(Math.pow((a.getX()-b.getX()),2)+Math.pow((a.getY()-b.getY()),2));
+                    for(i=0;i<k;i++){
+                        if(Math.abs(distancia)<Math.abs(Math.sqrt(Math.pow((a.getX()-vizinhos[k].getX()),2)+Math.pow((a.getY()-vizinhos[k].getY()),2)))){
+                            vizinhos[i] = b;
+
+                        }
+                    }
+                }
+            }
+        }
+
+
+
 
 
 
